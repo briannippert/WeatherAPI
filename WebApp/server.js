@@ -20,7 +20,7 @@ app.listen(port, () => {
  * Function to get the latitude and longitude from a zip code.
  * @param {Zip Code} zip 
  */
-function getLocation(zip){
+function getLocation(zip) {
 
 }
 
@@ -29,7 +29,7 @@ function getLocation(zip){
  * @param {Latitude} lat 
  * @param {Longitude} long 
  */
-function getWeather(lat ,long ){
+function getWeather(lat, long) {
 
 }
 
@@ -38,6 +38,35 @@ function getWeather(lat ,long ){
  * @param {} URL 
  * @param {*} paramaters 
  */
-function invokeHTTPRequest(URL,paramaters){
+function invokeHTTPRequest(hostname, path, paramaters, body, method) {
+  if (body != null) {
+    const data = new TextEncoder().encode(
+      JSON.stringify(body))
+  }
+
+
+  const options = {
+    hostname: hostname,
+    port: 443,
+    path: path,
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Content-Length': data.length
+    }
+  }
+
+  const req = https.request(options, res => {
+    console.log(`statusCode: ${res.statusCode}`)
+    res.on('data', d => {
+      process.stdout.write(d)
+    })
+  })
+
+  req.on('error', error => {
+    throw(error)
+  })
+  req.write(data)
+  req.end()
 
 }
