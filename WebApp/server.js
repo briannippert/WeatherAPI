@@ -32,3 +32,12 @@ function getLocation(zip){
 function getWeather(lat ,long ){
 
 }
+
+/**
+ * Function to invoke an HTTP request with the passed in URL and parameters. Returns a JSON object 
+ * @param {} URL 
+ * @param {*} paramaters 
+ */
+function invokeHTTPRequest(URL,paramaters){
+
+}
